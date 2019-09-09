@@ -4,14 +4,8 @@ pipeline {
       stages {
           stage('ExecuteTestScript') {
               steps {
-                  // Load script from library with package path
-                  def script_bash = libraryResource 'gs-spring-boot/initial/workflow.sh'
-
-                  // create a file with script_bash content
-                  writeFile file: './test.sh', text: script_bash
-
                   // Run it!
-                  sh 'bash ./test.sh'
+                  sh 'bash gs-spring-boot/initial/workflow.sh'
               }
          }
     }
