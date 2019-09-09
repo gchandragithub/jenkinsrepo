@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TEST="bash ./gs-spring-boot/initial/test1stage.sh"
+TEST="./gs-spring-boot/initial/test1stage.sh"
 RESPONSE=`$TEST`
 if [ "$RESPONSE" == "PASSED" ]; then
     echo "Staging Pre Deployment Passed"
