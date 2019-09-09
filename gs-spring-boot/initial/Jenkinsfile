@@ -1,18 +1,18 @@
 pipeline {
     agent any
 
-     stage ('ExecuteTestScript') {
       stages {
-        steps {
-            // Load script from library with package path
-            def script_bash = libraryResource 'gs-spring-boot/initial/workflow.sh'
+          stage('ExecuteTestScript') {
+              steps {
+                  // Load script from library with package path
+                  def script_bash = libraryResource 'gs-spring-boot/initial/workflow.sh'
 
-            // create a file with script_bash content
-            writeFile file: './test.sh', text: script_bash
+                  // create a file with script_bash content
+                  writeFile file: './test.sh', text: script_bash
 
-            // Run it!
-            sh 'bash ./test.sh'
-        }
-      }
+                  // Run it!
+                  sh 'bash ./test.sh'
+              }
+         }
     }
 }
