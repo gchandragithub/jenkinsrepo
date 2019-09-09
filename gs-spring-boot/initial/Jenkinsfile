@@ -2,6 +2,7 @@ pipeline {
     agent any
 
      stage ('ExecuteTestScript') {
+      stages {
         steps {
             // Load script from library with package path
             def script_bash = libraryResource 'gs-spring-boot/initial/workflow.sh'
@@ -12,6 +13,6 @@ pipeline {
             // Run it!
             sh 'bash ./test.sh'
         }
+      }
     }
-
 }
