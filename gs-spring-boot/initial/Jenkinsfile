@@ -5,7 +5,7 @@ pipeline {
           stage('ExecuteTestScript') {
               steps {
                       // Run it!
-                      sh 'bash gs-spring-boot/initial/testerworkflow.sh &'
+                      sh 'bash gs-spring-boot/initial/testerworkflow.sh'
                       sh 'bash gs-spring-boot/initial/test2stage.sh'
                       /*sh 'sleep 10'*/
                       /*sh 'java --version*/
