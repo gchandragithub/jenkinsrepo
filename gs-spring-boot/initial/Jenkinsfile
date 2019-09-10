@@ -10,6 +10,7 @@ pipeline {
               steps {
                   // Run it!
                   sh 'bash gs-spring-boot/initial/testerworkflow.sh'
+                  sh 'java --version'
                   sh 'gs-spring-boot/initial/gradlew build && java -jar gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar&'
                   }
               }
