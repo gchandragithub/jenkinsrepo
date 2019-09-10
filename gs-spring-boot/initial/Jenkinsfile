@@ -1,15 +1,16 @@
 pipeline {
-    agent any
+      agent any
+      tools {
+          jdk 'jdk8'
+      }
 
       stages {
           stage('ExecuteTestScript') {
               steps {
                   // Run it!
                   sh 'bash gs-spring-boot/initial/testerworkflow.sh'
-                  withCredentials([usernamePassword(credentialsId: 'artifactory', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                      sh './gradlew build artifactoryPublish -Partifactory_user=$USERNAME -Partifactory_password=$PASSWORD'
+                  sh 'bash gs-spring-boot/initial/gradlew build && java -jar gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar&'
                   }
               }
          }
-    }
 }
