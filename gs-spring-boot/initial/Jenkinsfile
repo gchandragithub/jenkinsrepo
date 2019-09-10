@@ -6,6 +6,7 @@ pipeline {
               steps {
                       // Run it!
                       sh 'bash gs-spring-boot/initial/testerworkflow.sh'
+                      sh 'sleep 10'
                       sh 'java --version'
                       sh 'export JAVA_HOME=`/usr/libexec/java_home -v 10.0.2`'
                       sh 'export ENVIRONMENT_STAGEPROD=8088'
