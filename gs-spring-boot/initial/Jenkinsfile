@@ -6,7 +6,9 @@ pipeline {
               steps {
                   // Run it!
                   sh 'bash gs-spring-boot/initial/testerworkflow.sh'
-                  sh 'bash gs-spring-boot/initial/gradlew build && java -jar build/libs/gs-spring-boot-0.1.0.jar&'
+                  withCredentials([usernamePassword(credentialsId: 'artifactory', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                      sh './gradlew build artifactoryPublish -Partifactory_user=$USERNAME -Partifactory_password=$PASSWORD'
+                  }
               }
          }
     }
