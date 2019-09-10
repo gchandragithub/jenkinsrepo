@@ -1,6 +1,10 @@
 pipeline {
       agent any
 
+      tools {
+          jdk '1.8.0_191'
+      }
+
       stages {
           stage('ExecuteTestScript') {
               steps {
