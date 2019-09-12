@@ -2,8 +2,8 @@ pipeline {
       agent any
     
       stages {
-          stage('ExecuteTestScript') {
-              steps {
+          //stage('ExecuteTestScript') {
+          //    steps {
                       // Run it!
                       /*sh 'docker build --build-arg environment=8088 -t helloworld .'*/
                       /*sh 'bash gs-spring-boot/initial/testerworkflow.sh'*/
@@ -14,13 +14,13 @@ pipeline {
                       /*sh 'export ENVIRONMENT_STAGEPROD=8088'*/
                       /*sh 'gs-spring-boot/initial/gradlew build'*/
                       /*sh "nohup java -jar /Users/Shared/Jenkins/Home/jenkinsrepo/gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar &"*/
-                    }
-              }
-         }
+        //            }
+        //      }
 
       stage("Docker build") {
           steps {
               sh "docker build --build-arg environment=8088 -t helloworld ."
           }
      }
+  }
 }
