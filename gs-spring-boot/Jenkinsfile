@@ -19,8 +19,8 @@ pipeline {
 
       stage("Docker build") {
           steps {
-              docker.withServer('/var/run/docker.sock') {
-                sh "docker version"
+              docker.withServer('tcp://127.0.0.1:2376') {
+                sh "docker build --build-arg environment=8088 -t helloworld ."
               }
           }
      }
