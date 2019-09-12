@@ -19,7 +19,7 @@ pipeline {
 
       stage("Docker build") {
           steps {
-              sh "sudo docker build --build-arg environment=8088 -t helloworld ."
+              sh "docker build --build-arg environment=8088 -t helloworld ."
           }
      }
   }
