@@ -7,7 +7,7 @@ pipeline {
 
                       sh '''#!/bin/bash
                          JENKINS_NODE_COOKIE=dontKillMe
-                         nohup java -jar /Users/Shared/Jenkins/Home/jenkinsrepo/gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar &> ./output.log &
+                         nohup java -jar /Users/Shared/Jenkins/Home/jenkinsrepo/gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar &
                          //nohup gs-spring-boot/initial/test2stage.sh
                       '''
                       // Run it!
