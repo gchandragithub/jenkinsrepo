@@ -12,13 +12,13 @@ pipeline {
                     export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
                     echo $JAVA_HOME
                     
-                    export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test1stage.sh`
+                    export RESPONSE=`sh gs-spring-boot/initial/test1stage.sh`
                     if [[ "$RESPONSE" == 'PASSED' ]]
                     then
                         echo "PRE DEPLOYMENT STAGING PASSED"
                     fi
                     
-                    export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test1prod.sh`
+                    export RESPONSE=`sh gs-spring-boot/initial/test1prod.sh`
                     if [[ "$RESPONSE" == 'PASSED' ]]
                     then
                         echo "PRE DEPLOYMENT PRODUCTION PASSED"
