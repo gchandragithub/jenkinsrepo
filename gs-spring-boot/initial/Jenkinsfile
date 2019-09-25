@@ -1,9 +1,9 @@
 pipeline {
-    agent any 
+    agent any
     stages {
         stage('Stage 1') {
             steps {
-               echo 'BEFORE' 
+               echo 'BEFORE'
 
 
                sh '''#!/bin/bash
@@ -11,28 +11,28 @@ pipeline {
                     JENKINS_NODE_COOKIE=dontKillMe
                     export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
                     echo $JAVA_HOME
-                    
-                    export RESPONSE=`sh gs-spring-boot/initial/test1stage.sh`
+
+                    export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test1stage.sh`
                     if [[ "$RESPONSE" == 'PASSED' ]]
                     then
                         echo "PRE DEPLOYMENT STAGING PASSED"
                     fi
-                    
-                    export RESPONSE=`sh gs-spring-boot/initial/test1prod.sh`
+
+                    export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test1prod.sh`
                     if [[ "$RESPONSE" == 'PASSED' ]]
                     then
                         echo "PRE DEPLOYMENT PRODUCTION PASSED"
                     fi
-                    
+
                     curl -X POST localhost:8088/actuator/shutdown
                     sleep 30
                     export STAGEPROD_PORT=8088
-        
-                    /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/gradlew --project-cache-dir .gradle_new -p /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial build 
+
+                    /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/gradlew --gradle-user-home /Users/Gaurav/thingspace --project-cache-dir .gradle_new -p /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial build
                     java -jar /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar &> /Users/Gaurav/output.log &
-                    
+
                     sleep 10
-                    
+
                     export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test2stage.sh`
                     if [[ "$RESPONSE" == 'PASSED' ]]
                     then
@@ -40,7 +40,7 @@ pipeline {
                         curl -X POST localhost:9099/actuator/shutdown
                         sleep 30
                         export STAGEPROD_PORT=9099
-                        sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/gradlew --project-cache-dir .gradle_new -p /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial build
+                        sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/gradlew --gradle-user-home /Users/Gaurav/thingspace --project-cache-dir .gradle_new -p /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial build
                         java -jar /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/build/libs/gs-spring-boot-0.1.0.jar &> /Users/Gaurav/output.log &
                         sleep 10
                         export RESPONSE=`sh /Users/Gaurav/thingspace/go/src/stash.verizon.com/npdthing/jenkinsrepo/gs-spring-boot/initial/test2prod.sh`
@@ -51,11 +51,11 @@ pipeline {
                     else
                         echo "STAGING FAILED"
                     fi
-                    
+
 
                 '''
 
-                echo 'AFTER' 
+                echo 'AFTER'
             }
         }
     }
